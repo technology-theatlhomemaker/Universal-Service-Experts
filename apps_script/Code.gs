@@ -7,6 +7,7 @@
  */
 
 const PARENT_FOLDER_ID = '1DXzcI-mGEHNKLSuqZDnx3z52QWL4yjZd';
+const LEADS_SUBFOLDER_NAME = 'Leads';
 const SHEET_FILE_NAME = 'USE Leads Index';
 const SHEET_TAB_NAME = 'Leads';
 const MIN_FORM_AGE_MS = 3000;
@@ -67,8 +68,8 @@ function doPost(e) {
     let savedPhotos = [];
 
     if (incomingPhotos.length) {
-      const parent = DriveApp.getFolderById(PARENT_FOLDER_ID);
-      leadFolder = createLeadFolder(parent, data);
+      const leadsRoot = getOrCreateLeadsFolder();
+      leadFolder = createLeadFolder(leadsRoot, data);
       savedPhotos = savePhotos(leadFolder, incomingPhotos);
     }
 
@@ -126,6 +127,25 @@ function getOrCreateSheet() {
   sheet.setColumnWidth(HEADERS.indexOf('description') + 1, 300);
 
   return sheet;
+}
+
+function getOrCreateLeadsFolder() {
+  const props = PropertiesService.getScriptProperties();
+  const cachedId = props.getProperty('LEADS_FOLDER_ID');
+
+  if (cachedId) {
+    try {
+      return DriveApp.getFolderById(cachedId);
+    } catch (err) {
+      console.warn('Stored leads folder missing, recreating:', err);
+    }
+  }
+
+  const parent = DriveApp.getFolderById(PARENT_FOLDER_ID);
+  const existing = parent.getFoldersByName(LEADS_SUBFOLDER_NAME);
+  const folder = existing.hasNext() ? existing.next() : parent.createFolder(LEADS_SUBFOLDER_NAME);
+  props.setProperty('LEADS_FOLDER_ID', folder.getId());
+  return folder;
 }
 
 function createLeadFolder(parent, data) {
@@ -205,7 +225,9 @@ function appendRow(sheet, data, folder, photos) {
  */
 function setup() {
   const folder = DriveApp.getFolderById(PARENT_FOLDER_ID);
+  const leads = getOrCreateLeadsFolder();
   const sheet = getOrCreateSheet();
   console.log('Parent folder:', folder.getName(), folder.getUrl());
+  console.log('Leads subfolder:', leads.getName(), leads.getUrl());
   console.log('Sheet:', sheet.getParent().getName(), sheet.getParent().getUrl());
 }

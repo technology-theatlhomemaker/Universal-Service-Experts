@@ -13,13 +13,27 @@ latency before the user could be redirected to the thank-you page.
 - `appsscript.json` — manifest (paste into the editor's manifest view)
 
 ## Parent folder
-The script writes everything inside this Drive folder:
+The script writes inside this Drive folder:
 
 ```
 1DXzcI-mGEHNKLSuqZDnx3z52QWL4yjZd
 ```
 
-The deploying Google account must be at least an **Editor** on that folder.
+The deploying Google account must be at least an **Editor** on it.
+
+Layout inside the parent:
+
+```
+<parent folder>/
+├── USE Leads Index               ← master Sheet (one row per submission)
+└── Leads/                        ← per-lead photo folders live here
+    ├── 2026-04-29_1422_Doe_Jane_HVAC/
+    └── ...
+```
+
+The `Leads/` subfolder is created automatically the first time a submission
+includes photos (or when you run `setup`). Its ID is cached in script
+properties so we don't pay a folder lookup on every submit.
 
 ## Spam protection (layered)
 1. **Honeypot** — the existing hidden field `form_fields[field_ffc5e7c]` in
@@ -71,10 +85,10 @@ curl -L 'https://script.google.com/macros/s/.../exec'
 
 Then submit one real form via the live site and confirm in Drive:
 - A new row appended in `USE Leads Index` with all submitted fields
-- If photos were attached: a subfolder named
-  `YYYY-MM-DD_HHMM_Last_First_Service` containing the saved files, with the
-  thumbnail rendering in the `image_preview` cell and the folder URL in
-  `folder_link`. No-photo submissions skip folder creation entirely.
+- If photos were attached: a folder
+  `Leads/YYYY-MM-DD_HHMM_Last_First_Service` containing the saved files,
+  with the thumbnail rendering in the `image_preview` cell and the folder
+  URL in `folder_link`. No-photo submissions skip folder creation entirely.
 
 ## Spam tests
 
@@ -96,11 +110,12 @@ Sheet and no folder appears in Drive.
 
 ## Resetting
 
-If you need the script to recreate the Sheet from scratch:
+If you need the script to recreate the Sheet or `Leads/` subfolder from
+scratch:
 
 1. Apps Script editor → **Project Settings** (gear icon) → **Script
    Properties**.
-2. Delete the `SHEET_ID` property.
-3. Move the existing `USE Leads Index` Sheet to trash if you want a clean
-   slate.
-4. Next submission will auto-create a new one inside the parent folder.
+2. Delete the `SHEET_ID` property to recreate the Sheet, and/or the
+   `LEADS_FOLDER_ID` property to recreate the `Leads/` subfolder.
+3. Move the existing artifact to trash if you want a clean slate.
+4. The next submission (or a `setup` run) will recreate them.
