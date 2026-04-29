@@ -24,19 +24,18 @@ after the INSERT, so the Apps Script call doesn't block the response.
 |-----------------------|---------------------------------------------------------------------|
 | `lead.php`            | Public POST endpoint the form submits to                            |
 | `retry.php`           | Admin manual retry: `GET /api/retry.php?token=<admin_token>`        |
+| `migrate.php`         | Admin migration runner: `GET /api/migrate.php?token=<admin_token>`  |
 | `push.php`            | Shared curl-and-update helper used by both                          |
 | `db.php`              | PDO + config helpers                                                |
 | `secrets.example.php` | Template — copy to `secrets.php` on the server                      |
-| `schema.sql`          | One table: `leads` (write-ahead log + retry buffer)                 |
+| `migrations/`         | Versioned `NNNN_*.sql` files; tracked in `schema_migrations` table  |
 | `.htaccess`           | Denies direct access to non-entrypoint files                        |
 
 ## First-time deploy
 
 1. **Database.** hPanel → **Databases → MySQL Databases** → create one. Note
    the host, db name, user, password.
-2. **Schema.** Open phpMyAdmin (or any MySQL client) and run
-   [schema.sql](./schema.sql) against the new DB.
-3. **Secrets.** SFTP/SSH to the server and copy
+2. **Secrets.** SFTP/SSH to the server and copy
    `secrets.example.php` → `secrets.php` in this folder. Fill in:
    - DB credentials from step 1
    - `apps_script_url` — your Apps Script `/exec` URL
@@ -44,6 +43,12 @@ after the INSERT, so the Apps Script call doesn't block the response.
      `php -r 'echo bin2hex(random_bytes(24));'`
 
    **Never commit `secrets.php`.** It is gitignored.
+3. **Migrate.** Once secrets are in place, hit:
+   ```
+   https://yourdomain.com/api/migrate.php?token=<admin_token>
+   ```
+   Expect `{"ok":true,"results":[{"version":"0001_create_leads_table","status":"applied"}]}`.
+   Re-running is safe — already-applied migrations are skipped.
 4. **Smoke test.** From your laptop:
    ```bash
    curl -X POST https://yourdomain.com/api/lead.php \
@@ -64,6 +69,21 @@ after the INSERT, so the Apps Script call doesn't block the response.
   hit retry, or replay manually.
 - **Housekeeping:** old `sent` rows can be pruned periodically:
   `DELETE FROM leads WHERE status='sent' AND sent_at < (NOW() - INTERVAL 30 DAY);`
+
+## Adding a migration
+
+1. Create `migrations/NNNN_short_description.sql` where `NNNN` is one higher
+   than the current max. Use `IF NOT EXISTS` / `IF EXISTS` guards where
+   possible.
+2. Commit it with the rest of the change.
+3. After deploy, hit `/api/migrate.php?token=<admin_token>` once. New
+   versions get applied; existing ones are skipped.
+
+**MySQL caveat:** DDL (`CREATE`/`ALTER`/`DROP`) auto-commits, so a migration
+that mixes DDL with a failing INSERT can leave the schema half-applied. Keep
+each migration small and idempotent. If a migration fails, fix the SQL —
+the `schema_migrations` row was never written, so re-running the migrate
+endpoint will retry from where it stopped.
 
 ## Spam protection
 

@@ -1,5 +1,5 @@
--- USE lead-capture queue.
--- Apply once via phpMyAdmin or `mysql -u <user> -p <db> < schema.sql`.
+-- 0001 — initial leads queue table.
+-- Applied automatically by /api/migrate.php?token=<admin_token>.
 
 CREATE TABLE IF NOT EXISTS leads (
   id              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

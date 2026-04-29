@@ -2,6 +2,6 @@
 # ever stops handling them this prevents secrets/db helpers from being
 # served as plain text. lead.php and retry.php remain reachable.
 
-<FilesMatch "^(secrets|secrets\.example|db|push|schema)\.(php|sql)$">
+<FilesMatch "^(secrets|secrets\.example|db|push)\.php$">
   Require all denied
 </FilesMatch>

@@ -1,0 +1,2 @@
+# Migrations contain raw SQL — never serve them as text.
+Require all denied
