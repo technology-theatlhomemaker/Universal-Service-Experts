@@ -165,7 +165,26 @@
         "https://atlanta.com/articles/buckhead/atlanta-buckhead-zip-code",
         "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
       ],
-      "review_notes": "Buckhead is a neighborhood of City of Atlanta, not a municipality. ZIP 30309 reassigned to Midtown to avoid cross-city overlap; some south-Buckhead addresses may use 30309."
+      "review_notes": "Buckhead is a neighborhood of City of Atlanta, not a municipality. ZIP 30309 reassigned to Midtown to avoid cross-city overlap; some south-Buckhead addresses may use 30309.",
+      "body_copy": {
+        "intro": "Buckhead runs older than most people assume. The 1920s and 30s estates clustered around Tuxedo Park and West Paces Ferry sit a few minutes from the glass towers at Lenox Square and Phipps Plaza, and that age gap is exactly where most service calls come from. If your house was built before the war, or your unit is in a Peachtree Road high-rise that was, you already know the wiring, plumbing, and HVAC questions are not the same questions a new-build owner asks.",
+        "sections": [
+          {
+            "h2": "Knob-and-tube rewires in pre-1940 Buckhead estates",
+            "body": "Plenty of estates between Habersham Road and Andrews Drive still have knob-and-tube hidden in the attic. It is not always dangerous on day one, but homeowners insurance carriers in 30305 and 30327 increasingly will not renew once they see it on a Four Point inspection. We pull the City of Atlanta permits, open the minimum number of plaster walls to fish new romex, and replace the service panel and meter base when the load calc says you have outgrown 100 amps. The trigger is usually an insurance non-renewal letter or a flickering circuit on the second floor when the AC kicks on. Bring us either of those and we can scope the work in one visit."
+          },
+          {
+            "h2": "High-rise condo work that clears the HOA on the first try",
+            "body": "Towers along Peachtree Road and around Phipps Plaza all have their own rules about water shutoffs, after-hours noise, and which trades the building manager will let into the riser room. We submit certificates of insurance to the management office in advance, schedule shutoffs with notice to neighboring units, and protect elevator pads when we move equipment. PTAC swaps, in-unit mini-split installs, and stack-shared kitchen drain repairs all benefit from this kind of front-end coordination. If your board has already rejected one contractor, that is usually because of paperwork rather than the work itself, and that part we handle every week in 30305 and 30326."
+          },
+          {
+            "h2": "Whole-home generator sizing for Tuxedo Park estates",
+            "body": "Power flickers along the West Paces Ferry corridor are common during summer storms, and a 5,000-square-foot estate with a wine cellar, a primary HVAC zone, well pumps, and a sump in the basement does not survive on a 12kW unit. We do a load calculation off the panel schedule, factor in the 240-volt loads you actually want to keep running, and right-size the generator and transfer switch before we quote the pad and gas line. Most Tuxedo Park homes land at 24kW or 26kW with a service-entrance-rated automatic transfer switch. We coordinate the gas-meter upgrade with Atlanta Gas Light when the existing meter cannot pass the BTU load."
+          }
+        ],
+        "areas_served": "Our Buckhead service area covers the estate streets near the Atlanta History Center, the high-rises and shopping district at Lenox Square and Phipps Plaza, and the homes ringing Chastain Park up toward Garden Hills and North Buckhead. Coverage runs across 30305, 30326, and 30327, with overlap into the Sandy Springs and Brookhaven sides where addresses sit on the city line.",
+        "closing_cta": "Whether your project is a Tuxedo Park rewire, a Peachtree Road condo repair, or a generator before the next storm season, we can be on site this week. Call Universal Service Experts at (678) 552-2259."
+      }
     },
     {
       "slug": "decatur",

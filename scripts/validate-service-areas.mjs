@@ -207,6 +207,75 @@ data.cities.forEach((city, idx) => {
       }
     }
   }
+
+  // body_copy (optional — populated by city-content-writer agent)
+  if (city.body_copy !== undefined && city.body_copy !== null) {
+    const bc = city.body_copy;
+    const wc = (s) => (typeof s === 'string' ? s.trim().split(/\s+/).filter(Boolean).length : 0);
+
+    if (typeof bc !== 'object') {
+      issues.push(`${where}: body_copy must be an object or null`);
+    } else {
+      // intro
+      if (typeof bc.intro !== 'string' || bc.intro.length === 0) {
+        issues.push(`${where}: body_copy.intro must be a non-empty string`);
+      } else {
+        const n = wc(bc.intro);
+        if (n < 50 || n > 120) issues.push(`${where}: body_copy.intro is ${n} words; target 60–90, hard band 50–120`);
+      }
+
+      // sections
+      if (!Array.isArray(bc.sections) || bc.sections.length < 2 || bc.sections.length > 3) {
+        issues.push(`${where}: body_copy.sections must have 2–3 items`);
+      } else {
+        bc.sections.forEach((sec, sIdx) => {
+          const sWhere = `${where}: body_copy.sections[${sIdx}]`;
+          if (typeof sec.h2 !== 'string' || sec.h2.length === 0) {
+            issues.push(`${sWhere}.h2 must be a non-empty string`);
+          } else if (sec.h2.length > 60) {
+            issues.push(`${sWhere}.h2 is ${sec.h2.length} chars; max 60`);
+          }
+          if (typeof sec.body !== 'string' || sec.body.length === 0) {
+            issues.push(`${sWhere}.body must be a non-empty string`);
+          } else {
+            const n = wc(sec.body);
+            if (n < 50 || n > 200) issues.push(`${sWhere}.body is ${n} words; target 80–150, hard band 50–200`);
+          }
+        });
+      }
+
+      // areas_served
+      if (typeof bc.areas_served !== 'string' || bc.areas_served.length === 0) {
+        issues.push(`${where}: body_copy.areas_served must be a non-empty string`);
+      } else {
+        const n = wc(bc.areas_served);
+        if (n < 30 || n > 100) issues.push(`${where}: body_copy.areas_served is ${n} words; target 40–80, hard band 30–100`);
+      }
+
+      // closing_cta
+      if (typeof bc.closing_cta !== 'string' || bc.closing_cta.length === 0) {
+        issues.push(`${where}: body_copy.closing_cta must be a non-empty string`);
+      } else {
+        const n = wc(bc.closing_cta);
+        if (n < 15 || n > 60) issues.push(`${where}: body_copy.closing_cta is ${n} words; target 20–40, hard band 15–60`);
+        if (!bc.closing_cta.includes('(678) 552-2259')) {
+          issues.push(`${where}: body_copy.closing_cta must include phone number "(678) 552-2259"`);
+        }
+      }
+
+      // Anti-pattern guards: scan all body_copy strings for common AI tells / fabrication tokens
+      const allText = [bc.intro, ...(bc.sections || []).map(s => `${s.h2 || ''} ${s.body || ''}`), bc.areas_served, bc.closing_cta].join('\n');
+      const aiTells = /\b(furthermore|moreover|in conclusion|world-class|cutting-edge|seamless|robust solution|leverage our|state of the art|unparalleled)\b/i;
+      if (aiTells.test(allText)) {
+        const m = allText.match(aiTells);
+        issues.push(`${where}: body_copy contains AI-tell phrase "${m[0]}" — rewrite`);
+      }
+      if (/\b(since 19\d{2}|since 20\d{2}|over \d+ years|\d+ years of experience)\b/i.test(allText)) {
+        const m = allText.match(/\b(since 19\d{2}|since 20\d{2}|over \d+ years|\d+ years of experience)\b/i);
+        issues.push(`${where}: body_copy contains unverifiable history claim "${m[0]}" — replace with {LICENSE_YEAR} token or remove`);
+      }
+    }
+  }
 });
 
 // Cities sorted by slug
