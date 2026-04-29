@@ -35,14 +35,19 @@ after the INSERT, so the Apps Script call doesn't block the response.
 
 1. **Database.** hPanel → **Databases → MySQL Databases** → create one. Note
    the host, db name, user, password.
-2. **Secrets.** SFTP/SSH to the server and copy
-   `secrets.example.php` → `secrets.php` in this folder. Fill in:
-   - DB credentials from step 1
-   - `apps_script_url` — your Apps Script `/exec` URL
-   - `admin_token` — generate with
-     `php -r 'echo bin2hex(random_bytes(24));'`
+2. **Secrets.** All values live in `.env` at the project root (gitignored).
+   Copy `.env.example` → `.env` and fill in `DB_*`, `APPS_SCRIPT_URL`, and
+   `ADMIN_TOKEN` (`php -r 'echo bin2hex(random_bytes(24));'`). Then build the
+   server-side config:
+   ```bash
+   ./scripts/build-secrets.sh
+   ```
+   That generates `public_html/api/secrets.php` (chmod 600, gitignored).
+   Upload it with the rest of `public_html/`. Re-run the script and re-deploy
+   any time you change a value in `.env`.
 
-   **Never commit `secrets.php`.** It is gitignored.
+   **Note on special characters:** wrap values containing `$`, spaces, or
+   single quotes in single quotes inside `.env` (e.g. `DB_PASS='abc!$xyz'`).
 3. **Migrate.** Once secrets are in place, hit:
    ```
    https://yourdomain.com/api/migrate.php?token=<admin_token>

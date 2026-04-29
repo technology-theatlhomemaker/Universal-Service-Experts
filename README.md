@@ -105,38 +105,43 @@ Hostinger's web root.
 
 ## Configuring the form backend
 
-The lead-capture forms post to a Google Apps Script Web App. The endpoint URL
-lives in `.env` at the project root and is baked into
-`public_html/assets/config.js` by `scripts/build-config.sh`. **The 7 HTML pages
-are URL-agnostic** — you only ever edit one place.
+The lead-capture forms POST to `/api/lead.php` (same-origin), which writes
+the submission to a Hostinger MySQL queue and forwards it to a Google
+Apps Script Web App in the background. Two pieces of config:
+
+| Where        | Holds                                              |
+|--------------|----------------------------------------------------|
+| `.env`       | DB creds, Apps Script `/exec` URL, admin token     |
+| `public_html/api/secrets.php` | Generated from `.env` by a build script |
+
+Both are gitignored. Only `secrets.php` lives on the server.
 
 ### First-time setup
 
 ```bash
 cp .env.example .env
-# Edit .env — set APPS_SCRIPT_URL to your Apps Script /exec deployment URL.
-# (Use /dev only for local testing while logged in as the script owner.)
-./scripts/build-config.sh
+# Edit .env — fill in DB_*, APPS_SCRIPT_URL, ADMIN_TOKEN.
+./scripts/build-secrets.sh
 ```
 
-This generates `public_html/assets/config.js`. Both `.env` and the generated
-`config.js` are gitignored.
+This writes `public_html/api/secrets.php` (chmod 600). Upload it with the
+rest of `public_html/` on your next deploy. Then hit
+`https://yourdomain.com/api/migrate.php?token=<ADMIN_TOKEN>` once to apply
+the schema.
 
-### Changing the URL later
+### Changing a value later
 
 ```bash
-# 1. Edit .env (one line)
-# 2. Regenerate config.js
-./scripts/build-config.sh
-# 3. Re-upload public_html/assets/config.js to your host
+# 1. Edit .env
+# 2. Regenerate
+./scripts/build-secrets.sh
+# 3. Re-upload public_html/api/secrets.php to the server
 ```
 
-That's it — no HTML edits, no per-page changes. The 7 pages each load
-`config.js` (which sets `window.USE_CONFIG.endpoint`) before `use-form.js`
-reads it.
-
-For the Apps Script side (`Code.gs`, deploy steps, OAuth scopes, spam tests),
-see [apps_script/README.md](apps_script/README.md).
+For PHP endpoint internals (lead.php / retry.php / migrate.php) and the
+queue table, see [public_html/api/README.md](public_html/api/README.md). For
+the Apps Script side (Code.gs, deploy steps, OAuth scopes, spam tests), see
+[apps_script/README.md](apps_script/README.md).
 
 ## TODO
 
