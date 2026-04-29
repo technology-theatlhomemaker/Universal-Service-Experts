@@ -37,6 +37,12 @@
       return;
     }
 
+    const validationError = validateRequired(form);
+    if (validationError) {
+      showError(form, validationError);
+      return;
+    }
+
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn ? submitBtn.innerHTML : '';
     if (submitBtn) {
@@ -45,8 +51,26 @@
     }
     clearError(form);
 
+    const fileInput = form.querySelector(`input[name="${PHOTO_INPUT_NAME}"]`);
+    const hasPhotos = !!(fileInput && fileInput.files && fileInput.files.length);
+
     try {
-      const payload = await buildPayload(form);
+      const payload = await buildPayload(form, fileInput);
+
+      if (!hasPhotos) {
+        fetch(endpoint, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+          redirect: 'follow',
+          keepalive: true
+        }).catch((err) => console.error('Background submit failed:', err));
+
+        window.location.href = '/thank-you/';
+        return;
+      }
+
       const res = await fetch(endpoint, {
         method: 'POST',
         mode: 'cors',
@@ -77,7 +101,19 @@
     }
   }
 
-  async function buildPayload(form) {
+  function validateRequired(form) {
+    const firstName = form.querySelector('input[name="form_fields[name]"]');
+    const email = form.querySelector('input[name="form_fields[field_6817b28]"]');
+    if (!firstName || !firstName.value.trim()) {
+      return 'Please enter your first name.';
+    }
+    if (!email || !email.value.trim()) {
+      return 'Please enter your email address.';
+    }
+    return null;
+  }
+
+  async function buildPayload(form, fileInput) {
     const payload = {};
 
     const fields = form.querySelectorAll('input, textarea, select');
@@ -93,7 +129,6 @@
     payload._source_page = window.location.pathname;
     payload._user_agent = navigator.userAgent;
 
-    const fileInput = form.querySelector(`input[name="${PHOTO_INPUT_NAME}"]`);
     payload.photos = [];
     if (fileInput && fileInput.files && fileInput.files.length) {
       const files = Array.from(fileInput.files).slice(0, MAX_PHOTOS);

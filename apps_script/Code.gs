@@ -2,8 +2,8 @@
  * Universal Service Experts — Lead Capture Web App
  *
  * Receives lead-form submissions from the static site, drops obvious spam,
- * stores per-lead photos + a formatted Doc in a Drive subfolder, and appends
- * a row to the master Sheet.
+ * appends a row to the master Sheet, and (only when photos are attached)
+ * stores them in a per-lead Drive subfolder.
  */
 
 const PARENT_FOLDER_ID = '1DXzcI-mGEHNKLSuqZDnx3z52QWL4yjZd';
@@ -16,7 +16,7 @@ const STATUS_OPTIONS = ['New', 'Contacted', 'Quoted', 'Won', 'Lost'];
 const HEADERS = [
   'timestamp', 'first_name', 'last_name', 'phone', 'email',
   'service_type', 'city', 'zip', 'street_address', 'description',
-  'photo_count', 'folder_link', 'doc_link', 'image_preview',
+  'photo_count', 'folder_link', 'image_preview',
   'status', 'source_page', 'user_agent'
 ];
 
@@ -62,11 +62,17 @@ function doPost(e) {
     }
 
     const sheet = getOrCreateSheet();
-    const parent = DriveApp.getFolderById(PARENT_FOLDER_ID);
-    const leadFolder = createLeadFolder(parent, data);
-    const photos = savePhotos(leadFolder, data.photos || []);
-    const doc = createSubmissionDoc(leadFolder, data, photos);
-    appendRow(sheet, data, leadFolder, doc, photos);
+    const incomingPhotos = Array.isArray(data.photos) ? data.photos : [];
+    let leadFolder = null;
+    let savedPhotos = [];
+
+    if (incomingPhotos.length) {
+      const parent = DriveApp.getFolderById(PARENT_FOLDER_ID);
+      leadFolder = createLeadFolder(parent, data);
+      savedPhotos = savePhotos(leadFolder, incomingPhotos);
+    }
+
+    appendRow(sheet, data, leadFolder, savedPhotos);
 
     return jsonResponse({ ok: true, redirectUrl: '/thank-you/' });
   } catch (err) {
@@ -163,49 +169,7 @@ function savePhotos(folder, photos) {
   return saved;
 }
 
-function createSubmissionDoc(folder, data, photos) {
-  const doc = DocumentApp.create('Submission');
-  const docFile = DriveApp.getFileById(doc.getId());
-  folder.addFile(docFile);
-  DriveApp.getRootFolder().removeFile(docFile);
-
-  const body = doc.getBody();
-  body.clear();
-
-  body.appendParagraph('Lead Submission').setHeading(DocumentApp.ParagraphHeading.HEADING1);
-  body.appendParagraph(new Date().toString()).setItalic(true);
-
-  const rows = [
-    ['First Name',     data[FIELD.firstName]],
-    ['Last Name',      data[FIELD.lastName]],
-    ['Email',          data[FIELD.email]],
-    ['Phone',          data[FIELD.phone]],
-    ['Service Type',   data[FIELD.service]],
-    ['Street Address', data[FIELD.street]],
-    ['City',           data[FIELD.city]],
-    ['ZIP',            data[FIELD.zip]],
-    ['Source Page',    data._source_page || data['referer_title'] || '']
-  ];
-
-  const table = body.appendTable(rows.map(r => [r[0], String(r[1] || '')]));
-  table.getRow(0).editAsText().setBold(true);
-
-  body.appendParagraph('Description').setHeading(DocumentApp.ParagraphHeading.HEADING2);
-  body.appendParagraph(String(data[FIELD.description] || '(none provided)'));
-
-  if (photos.length) {
-    body.appendParagraph('Photos').setHeading(DocumentApp.ParagraphHeading.HEADING2);
-    photos.forEach(p => {
-      const para = body.appendParagraph('');
-      para.appendText(p.name).setLinkUrl(p.url);
-    });
-  }
-
-  doc.saveAndClose();
-  return docFile;
-}
-
-function appendRow(sheet, data, folder, docFile, photos) {
+function appendRow(sheet, data, folder, photos) {
   const tz = Session.getScriptTimeZone() || 'America/New_York';
   const ts = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd HH:mm:ss');
   const previewFormula = photos.length
@@ -224,8 +188,7 @@ function appendRow(sheet, data, folder, docFile, photos) {
     data[FIELD.street] || '',
     data[FIELD.description] || '',
     photos.length,
-    folder.getUrl(),
-    docFile.getUrl(),
+    folder ? folder.getUrl() : '',
     previewFormula,
     'New',
     data._source_page || data['referer_title'] || '',

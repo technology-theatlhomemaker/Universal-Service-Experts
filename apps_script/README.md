@@ -1,8 +1,12 @@
 # USE Lead Capture — Apps Script
 
 Google Apps Script Web App that receives lead-form submissions from the static
-USE site, drops obvious spam, stores per-lead photos and a formatted Doc in a
-Drive subfolder, and appends a row to a master Sheet.
+USE site, drops obvious spam, appends a row to a master Sheet, and (only when
+photos are attached) stores them in a per-lead Drive subfolder.
+
+The submission Doc that earlier versions created is gone — the Sheet row holds
+every field, so creating a Doc on every submit was just adding 1–3 seconds of
+latency before the user could be redirected to the thank-you page.
 
 ## Files
 - `Code.gs` — server logic (paste into the Apps Script editor)
@@ -66,11 +70,11 @@ curl -L 'https://script.google.com/macros/s/.../exec'
 ```
 
 Then submit one real form via the live site and confirm in Drive:
-- New subfolder named `YYYY-MM-DD_HHMM_Last_First_Service`
-- `Submission` Google Doc inside it
-- Any uploaded photos saved as separate files
-- A new row appended in `USE Leads Index` with photo thumbnail rendering in
-  the `image_preview` cell
+- A new row appended in `USE Leads Index` with all submitted fields
+- If photos were attached: a subfolder named
+  `YYYY-MM-DD_HHMM_Last_First_Service` containing the saved files, with the
+  thumbnail rendering in the `image_preview` cell and the folder URL in
+  `folder_link`. No-photo submissions skip folder creation entirely.
 
 ## Spam tests
 
