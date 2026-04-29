@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# Generate public_html/api/secrets.php from .env at the project root.
+# Generate private/secrets.php from .env at the project root.
 # Run before deploying: ./scripts/build-secrets.sh
-# secrets.php is gitignored — upload it alongside the rest of public_html/.
+# secrets.php lives ABOVE the web root so it can never be served over HTTP.
+# It is gitignored — upload the private/ directory as a sibling of public_html/.
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ENV_FILE="$ROOT/.env"
-OUT_FILE="$ROOT/public_html/api/secrets.php"
+OUT_FILE="$ROOT/private/secrets.php"
 
 if [ ! -f "$ENV_FILE" ]; then
   echo "Error: .env not found at $ENV_FILE" >&2
@@ -42,6 +43,8 @@ php_quote() {
 }
 
 DB_PASS_VAL="${DB_PASS:-}"
+
+mkdir -p "$(dirname "$OUT_FILE")"
 
 cat > "$OUT_FILE" <<EOF
 <?php

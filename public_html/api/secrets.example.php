@@ -1,7 +1,8 @@
 <?php
 // Reference for what secrets.php must return. Do NOT hand-edit secrets.php
 // in production — generate it from .env with `scripts/build-secrets.sh`,
-// which writes a chmod-600 file at this location. secrets.php is gitignored.
+// which writes a chmod-600 file to `private/secrets.php` (a SIBLING of
+// public_html/, above the web root). secrets.php is gitignored.
 
 return [
   'db_host'         => 'localhost',

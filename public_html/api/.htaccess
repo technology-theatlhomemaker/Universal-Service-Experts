@@ -1,7 +1,12 @@
 # Belt-and-suspenders: PHP files are always executed by Apache, but if PHP
-# ever stops handling them this prevents secrets/db helpers from being
-# served as plain text. lead.php and retry.php remain reachable.
+# ever stops handling them this prevents internal helpers (and any backup
+# variants like secrets.php.bak / secrets.php~) from being served as plain
+# text. lead.php, retry.php, and migrate.php remain reachable.
+#
+# Note: secrets.php no longer lives here — it has been moved to private/
+# above the web root. These rules stay as defense-in-depth for db.php /
+# push.php / secrets.example.php and to block any stray copy of secrets.php.
 
-<FilesMatch "^(secrets|secrets\.example|db|push)\.php$">
+<FilesMatch "^(secrets|secrets\.example|db|push)\.php\b">
   Require all denied
 </FilesMatch>

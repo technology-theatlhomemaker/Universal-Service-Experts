@@ -39,6 +39,9 @@ public_html/                       deployable site — push this to Hostinger
     ├── i18n.min.js                @wordpress/i18n (Elementor dep)
     └── emoji-release.min.js       emoji renderer (legacy browsers)
 
+private/                           server-side secrets — sibling of public_html/
+└── secrets.php                    generated from .env, NEVER served by HTTP
+
 rebuild-YYYYMMDD.tar.gz            archive of the build environment
                                    (Docker compose, scripts, WP working copy)
 
@@ -118,12 +121,15 @@ The lead-capture forms POST to `/api/lead.php` (same-origin), which writes
 the submission to a Hostinger MySQL queue and forwards it to a Google
 Apps Script Web App in the background. Two pieces of config:
 
-| Where        | Holds                                              |
-|--------------|----------------------------------------------------|
-| `.env`       | DB creds, Apps Script `/exec` URL, admin token     |
-| `public_html/api/secrets.php` | Generated from `.env` by a build script |
+| Where                  | Holds                                          |
+|------------------------|------------------------------------------------|
+| `.env`                 | DB creds, Apps Script `/exec` URL, admin token |
+| `private/secrets.php`  | Generated from `.env` by a build script        |
 
-Both are gitignored. Only `secrets.php` lives on the server.
+Both are gitignored. `secrets.php` lives in `private/` — a **sibling of
+`public_html/`**, deliberately above the web root, so it can never be served
+over HTTP regardless of server config (Apache, nginx, LiteSpeed). The PHP
+endpoints in `public_html/api/` load it via a relative `require`.
 
 ### First-time setup
 
@@ -133,10 +139,21 @@ cp .env.example .env
 ./scripts/build-secrets.sh
 ```
 
-This writes `public_html/api/secrets.php` (chmod 600). Upload it with the
-rest of `public_html/` on your next deploy. Then hit
+This writes `private/secrets.php` (chmod 600). On deploy, upload the
+`private/` directory to your account's home directory **as a sibling of
+`public_html/`**, not inside it. Then hit
 `https://yourdomain.com/api/migrate.php?token=<ADMIN_TOKEN>` once to apply
 the schema.
+
+The expected layout on Hostinger:
+
+```
+~/                          (your account home — Hostinger's domain root)
+├── public_html/            web-served
+│   └── api/...
+└── private/                NOT web-served
+    └── secrets.php
+```
 
 ### Changing a value later
 
@@ -144,8 +161,47 @@ the schema.
 # 1. Edit .env
 # 2. Regenerate
 ./scripts/build-secrets.sh
-# 3. Re-upload public_html/api/secrets.php to the server
+# 3. Re-upload private/secrets.php to the server (NOT into public_html/)
 ```
+
+### Manual deploy to Hostinger
+
+When deploying changes that touch the API (`public_html/api/`) or rotate
+secrets, run through this checklist on hPanel → Files → File Manager (or
+SFTP / FileZilla / `rsync`):
+
+1. **Upload `private/`** as a sibling of `public_html/`, in your account's
+   home directory — **not inside `public_html/`**. The result on the server
+   should look like:
+   ```
+   ~/
+   ├── public_html/
+   └── private/
+       └── secrets.php
+   ```
+2. **Re-upload changed files** in `public_html/api/`:
+   - `db.php` (loads secrets via `../../private/secrets.php`)
+   - `.htaccess` (denies direct access to internal helpers)
+   - any `lead.php` / `retry.php` / `migrate.php` / `push.php` you changed
+3. **Delete any pre-move `public_html/api/secrets.php`** from the live
+   server if it exists. The new code does not read from that path, but a
+   stale copy left behind is the exact exposure we just removed locally.
+4. **Smoke-test the form.** Submit the contact form once on
+   `https://universalserviceexperts.com/contact-us/` and confirm it
+   redirects to `/thank-you/` and creates a row in the `leads` table:
+   ```sql
+   SELECT id, created_at, status FROM leads ORDER BY id DESC LIMIT 1;
+   ```
+5. **Confirm secrets are not web-accessible.** From any browser:
+   - `https://universalserviceexperts.com/api/secrets.php` → expect **404**
+   - `https://universalserviceexperts.com/api/db.php` → expect **403** or **404**
+   If either returns 200 with PHP source or a config dump, **stop and
+   rotate `DB_PASS` and `ADMIN_TOKEN`** before continuing.
+6. **(Optional) Re-run migrations** if you added a new SQL file under
+   `public_html/api/migrations/`:
+   ```
+   https://universalserviceexperts.com/api/migrate.php?token=<ADMIN_TOKEN>
+   ```
 
 For PHP endpoint internals (lead.php / retry.php / migrate.php) and the
 queue table, see [public_html/api/README.md](public_html/api/README.md). For

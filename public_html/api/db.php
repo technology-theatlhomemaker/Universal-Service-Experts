@@ -4,7 +4,11 @@ declare(strict_types=1);
 function use_config(): array {
   static $cfg = null;
   if ($cfg !== null) return $cfg;
-  $cfg = require __DIR__ . '/secrets.php';
+  $path = __DIR__ . '/../../private/secrets.php';
+  if (!is_file($path)) {
+    throw new RuntimeException('private/secrets.php not deployed');
+  }
+  $cfg = require $path;
   if (!is_array($cfg)) {
     throw new RuntimeException('secrets.php must return an array');
   }

@@ -27,7 +27,7 @@ after the INSERT, so the Apps Script call doesn't block the response.
 | `migrate.php`         | Admin migration runner: `GET /api/migrate.php?token=<admin_token>`  |
 | `push.php`            | Shared curl-and-update helper used by both                          |
 | `db.php`              | PDO + config helpers                                                |
-| `secrets.example.php` | Template — copy to `secrets.php` on the server                      |
+| `secrets.example.php` | Reference for the shape of `private/secrets.php` (above the web root) |
 | `migrations/`         | Versioned `NNNN_*.sql` files; tracked in `schema_migrations` table  |
 | `.htaccess`           | Denies direct access to non-entrypoint files                        |
 
@@ -42,9 +42,11 @@ after the INSERT, so the Apps Script call doesn't block the response.
    ```bash
    ./scripts/build-secrets.sh
    ```
-   That generates `public_html/api/secrets.php` (chmod 600, gitignored).
-   Upload it with the rest of `public_html/`. Re-run the script and re-deploy
-   any time you change a value in `.env`.
+   That generates `private/secrets.php` (chmod 600, gitignored), which lives
+   above the web root. Upload the `private/` directory as a **sibling of
+   `public_html/`** on the server (not inside it) — `db.php` loads it via
+   `require __DIR__ . '/../../private/secrets.php'`. Re-run the script and
+   re-deploy `private/secrets.php` any time you change a value in `.env`.
 
    **Note on special characters:** wrap values containing `$`, spaces, or
    single quotes in single quotes inside `.env` (e.g. `DB_PASS='abc!$xyz'`).
