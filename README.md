@@ -27,8 +27,17 @@ public_html/                       deployable site — push this to Hostinger
 ├── metering-services/index.html   
 ├── contact-us/index.html          
 ├── thank-you/index.html           form-submit success page
-├── wp-content/                    images, fonts, theme + Elementor assets
-└── wp-includes/                   jQuery + WP core JS
+├── api/                           PHP backend (lead.php, db.php, migrations)
+├── assets/                        config.js, use-form.js
+├── media/                         site images (was wp-content/uploads/)
+└── lib/                           Elementor + theme + jQuery assets
+    ├── elementor/                 Elementor Free frontend JS+CSS
+    ├── elementor-pro/             Elementor Pro frontend JS+CSS
+    ├── theme/                     hello-elementor theme stylesheets
+    ├── jquery/                    jquery, jquery-migrate, jquery-ui core
+    ├── hooks.min.js               @wordpress/hooks (Elementor dep)
+    ├── i18n.min.js                @wordpress/i18n (Elementor dep)
+    └── emoji-release.min.js       emoji renderer (legacy browsers)
 
 rebuild-YYYYMMDD.tar.gz            archive of the build environment
                                    (Docker compose, scripts, WP working copy)
