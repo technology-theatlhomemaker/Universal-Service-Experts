@@ -1,0 +1,666 @@
+{
+  "metro": "atlanta",
+  "version": "2026-04-29",
+  "cities": [
+    {
+      "slug": "alpharetta",
+      "name": "Alpharetta",
+      "display_name": "Alpharetta",
+      "parent_county": "Fulton",
+      "parent_municipality": "Alpharetta",
+      "zips": ["30004", "30009", "30022"],
+      "population": 65000,
+      "median_home_age": 25,
+      "homeownership_rate": 0.74,
+      "notable_landmarks": [
+        "Avalon mixed-use district",
+        "Ameris Bank Amphitheatre",
+        "Downtown Alpharetta City Center",
+        "North Point Mall",
+        "Big Creek Greenway"
+      ],
+      "vibe": "Tech-corridor suburb with newer subdivisions, large lots, master-planned communities, and a walkable downtown grid",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "EV charger installs and smart-home retrofits common in newer luxury builds" },
+        "hvac": { "score": 5, "why": "Large two-story homes with multi-zone systems needing tune-ups and replacements" },
+        "plumbing": { "score": 3, "why": "Newer plumbing stock; mostly fixture and tankless water heater work" },
+        "handyman": { "score": 5, "why": "High-end finishes and frequent cosmetic upgrades drive steady punch-list demand" }
+      },
+      "local_ctas": [
+        "EV charger and Tesla wall connector installs near Avalon",
+        "Multi-zone HVAC tune-ups for North Point and Windward homes",
+        "Tankless water heater swaps for Alpharetta two-story builds",
+        "Smart-home wiring for Tech Corridor offices and townhomes",
+        "Pre-concert AC checks before Ameris Bank Amphitheatre season"
+      ],
+      "content_hooks": [
+        "Multi-zone HVAC zoning fixes for 4,000+ sqft Windward and Avalon homes",
+        "EV charger permitting under Alpharetta's residential electrical code",
+        "Smart-thermostat and whole-home surge protection for tech-corridor families"
+      ],
+      "seo": {
+        "h1": "Alpharetta Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Alpharetta Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Alpharetta (30004, 30009, 30022). Same-day appointments near Avalon and North Point.",
+        "primary_keywords": [
+          "electrician alpharetta",
+          "alpharetta hvac",
+          "plumber alpharetta 30004",
+          "alpharetta handyman",
+          "ev charger installer alpharetta"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alpharetta,_Georgia",
+        "https://www.awesomealpharetta.com/play/attraction/amerisbank-amphitheatre/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "ZIP 30005 is largely Johns Creek and excluded here; confirm with USPS lookup before any service-area rewrite."
+    },
+    {
+      "slug": "brookhaven",
+      "name": "Brookhaven",
+      "display_name": "Brookhaven",
+      "parent_county": "DeKalb",
+      "parent_municipality": "Brookhaven",
+      "zips": ["30319", "30329"],
+      "population": 57000,
+      "median_home_age": 50,
+      "homeownership_rate": 0.55,
+      "notable_landmarks": [
+        "Oglethorpe University",
+        "Town Brookhaven",
+        "Capital City Country Club",
+        "Murphey Candler Park",
+        "Blackburn Park"
+      ],
+      "vibe": "DeKalb's youngest city (incorporated 2012), mix of mid-century ranches, 1920s estates near the country club, and new mid-rises",
+      "service_relevance": {
+        "electrical": { "score": 5, "why": "Mid-century ranches with original 100-amp panels needing upgrades" },
+        "hvac": { "score": 4, "why": "Aging ductwork in 1950s-60s ranches; heat-pump conversions common" },
+        "plumbing": { "score": 4, "why": "Cast-iron drains in Historic Brookhaven estates failing past 80 years" },
+        "handyman": { "score": 4, "why": "Mid-rise condo move-in punch lists and townhome cosmetic work" }
+      },
+      "local_ctas": [
+        "Panel upgrades for mid-century ranches near Murphey Candler",
+        "Cast-iron drain replacement for Historic Brookhaven estates",
+        "HVAC swap-outs for Ashford Park and Brookhaven Heights ranches",
+        "Town Brookhaven condo electrical and outlet retrofits",
+        "Heat-pump conversions for homes off Peachtree near Oglethorpe"
+      ],
+      "content_hooks": [
+        "100-amp to 200-amp panel upgrades in 1950s Ashford Park ranches",
+        "Cast-iron to PVC drain conversion in pre-war Historic Brookhaven homes",
+        "Condo-board-approved electrical work in Town Brookhaven mid-rises"
+      ],
+      "seo": {
+        "h1": "Brookhaven Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Brookhaven Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Brookhaven (30319, 30329). Mid-century ranches and Historic Brookhaven specialists.",
+        "primary_keywords": [
+          "electrician brookhaven ga",
+          "brookhaven hvac",
+          "plumber brookhaven 30319",
+          "brookhaven handyman",
+          "panel upgrade brookhaven"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Brookhaven,_Georgia",
+        "https://setrealestategroup.com/blog/the-top-attractions-in-brookhaven-ga-for-locals-or-tourists",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": null
+    },
+    {
+      "slug": "buckhead",
+      "name": "Buckhead",
+      "display_name": "Buckhead",
+      "parent_county": "Fulton",
+      "parent_municipality": "Atlanta",
+      "zips": ["30305", "30326", "30327"],
+      "population": 89000,
+      "median_home_age": 45,
+      "homeownership_rate": 0.52,
+      "notable_landmarks": [
+        "Lenox Square",
+        "Phipps Plaza",
+        "Atlanta History Center",
+        "Chastain Park",
+        "Tuxedo Park"
+      ],
+      "vibe": "Affluent in-town district inside the City of Atlanta, mix of pre-war estates, dense high-rises, and HOA-tight luxury condos",
+      "service_relevance": {
+        "electrical": { "score": 5, "why": "Pre-war estates with knob-and-tube and aging service panels needing upgrades" },
+        "hvac": { "score": 4, "why": "Older homes need duct retrofits; high-rises need mini-split and PTAC work" },
+        "plumbing": { "score": 5, "why": "Cast-iron and galvanized lines in 1920s-40s estates near end of life" },
+        "handyman": { "score": 4, "why": "High-end finishes and luxury condo punch lists demand careful repair" }
+      },
+      "local_ctas": [
+        "Pre-war estate rewiring from Tuxedo Park to Garden Hills",
+        "High-rise mini-split and PTAC service near Lenox and Phipps",
+        "Galvanized line replacement for 1920s Buckhead estates",
+        "Concierge-coordinated condo repairs in Peachtree Road towers",
+        "Generator installs for Chastain Park luxury homes"
+      ],
+      "content_hooks": [
+        "Knob-and-tube replacement in pre-1940 Buckhead estates",
+        "HOA-coordinated electrical and plumbing for Peachtree Road high-rises",
+        "Whole-home generator sizing for Tuxedo Park and West Paces Ferry estates"
+      ],
+      "seo": {
+        "h1": "Buckhead Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Buckhead Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Buckhead (30305, 30326, 30327). Pre-war estate and luxury high-rise specialists.",
+        "primary_keywords": [
+          "electrician buckhead",
+          "buckhead hvac",
+          "plumber buckhead 30305",
+          "buckhead handyman",
+          "knob and tube buckhead"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Buckhead",
+        "https://atlanta.com/articles/buckhead/atlanta-buckhead-zip-code",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "Buckhead is a neighborhood of City of Atlanta, not a municipality. ZIP 30309 reassigned to Midtown to avoid cross-city overlap; some south-Buckhead addresses may use 30309."
+    },
+    {
+      "slug": "decatur",
+      "name": "Decatur",
+      "display_name": "Decatur",
+      "parent_county": "DeKalb",
+      "parent_municipality": "Decatur",
+      "zips": ["30030", "30033"],
+      "population": 25000,
+      "median_home_age": 75,
+      "homeownership_rate": 0.60,
+      "notable_landmarks": [
+        "DeKalb County Courthouse Square",
+        "Agnes Scott College",
+        "Decatur Square farmers market",
+        "Glenlake Park",
+        "Oakhurst Village"
+      ],
+      "vibe": "Walkable college-town feel, dense pre-1940 bungalow stock, MARTA-served Square, progressive HOA-light neighborhoods",
+      "service_relevance": {
+        "electrical": { "score": 5, "why": "Pre-WWII bungalows with original wiring and undersized panels everywhere" },
+        "hvac": { "score": 5, "why": "Bungalows lack modern ductwork; mini-split retrofits and additions are constant" },
+        "plumbing": { "score": 5, "why": "1920s clay sewer laterals and galvanized supply lines failing under mature oaks" },
+        "handyman": { "score": 5, "why": "Owner-occupied bungalow market drives steady door, window, and trim repairs" }
+      },
+      "local_ctas": [
+        "Bungalow rewires from Oakhurst to Winnona Park",
+        "Mini-split retrofits for ductless 1920s Decatur cottages",
+        "Sewer lateral replacement under old oaks near Decatur Square",
+        "Agnes Scott-area panel upgrades for craftsman homes",
+        "Old-house punch lists for MARTA-walkable Decatur addresses"
+      ],
+      "content_hooks": [
+        "Knob-and-tube and cloth-wire rewires in 1920s Oakhurst bungalows",
+        "Clay-to-PVC sewer lateral replacement under mature Decatur tree canopy",
+        "Permitting through City of Decatur vs unincorporated DeKalb on the same street"
+      ],
+      "seo": {
+        "h1": "Decatur Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Decatur GA Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Decatur (30030, 30033). Bungalow rewires, sewer laterals, and old-house specialists.",
+        "primary_keywords": [
+          "electrician decatur ga",
+          "decatur hvac",
+          "plumber decatur 30030",
+          "decatur handyman",
+          "bungalow rewire decatur"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Decatur,_Georgia",
+        "https://www.decaturga.com/ed/page/demographic-information",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "ZIP 30030 is City of Decatur core; 30033 covers North Decatur (mostly unincorporated DeKalb but with Decatur mailing address). Confirm city-limits permitting per address."
+    },
+    {
+      "slug": "dunwoody",
+      "name": "Dunwoody",
+      "display_name": "Dunwoody",
+      "parent_county": "DeKalb",
+      "parent_municipality": "Dunwoody",
+      "zips": ["30338", "30346"],
+      "population": 50000,
+      "median_home_age": 42,
+      "homeownership_rate": 0.71,
+      "notable_landmarks": [
+        "Perimeter Mall",
+        "Dunwoody Village (Williamsburg-style center)",
+        "Spruill Center for the Arts",
+        "Brook Run Park",
+        "Dunwoody Nature Center"
+      ],
+      "vibe": "Affluent Perimeter-area suburb with 1970s-80s split-levels, Williamsburg-style village center, and a dense office/condo core at I-285",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "Original aluminum branch wiring in some 1970s homes; common panel and outlet remediation" },
+        "hvac": { "score": 5, "why": "1970s-80s split-levels with single-zone systems failing the second story" },
+        "plumbing": { "score": 4, "why": "Polybutylene supply lines in some Dunwoody homes triggering replacements" },
+        "handyman": { "score": 4, "why": "Empty-nester remodels and ranch-to-open-concept conversions common" }
+      },
+      "local_ctas": [
+        "Aluminum-wire remediation for 1970s Dunwoody Club Forest homes",
+        "Polybutylene to PEX repipes near Dunwoody Village",
+        "Two-zone HVAC retrofits for split-levels off Mount Vernon",
+        "Perimeter Center high-rise condo electrical service",
+        "Spruill Center-area handyman punch lists for empty-nesters"
+      ],
+      "content_hooks": [
+        "Aluminum branch-wire remediation with COPALUM connectors in Dunwoody Club Forest",
+        "Polybutylene-to-PEX whole-home repipes in 1970s-80s Dunwoody homes",
+        "Two-zone or mini-split add-on for the always-hot upstairs of a split-level"
+      ],
+      "seo": {
+        "h1": "Dunwoody Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Dunwoody Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Dunwoody (30338, 30346). Polybutylene repipes and aluminum-wire experts.",
+        "primary_keywords": [
+          "electrician dunwoody",
+          "dunwoody hvac",
+          "plumber dunwoody 30338",
+          "dunwoody handyman",
+          "polybutylene repipe dunwoody"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Dunwoody,_Georgia",
+        "https://www.discoverdunwoody.com/about-dunwoody/history-of-dunwoody/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "ZIP 30360 is shared with Doraville and assigned elsewhere; 30350 is shared with Sandy Springs and assigned to Sandy Springs here."
+    },
+    {
+      "slug": "marietta",
+      "name": "Marietta",
+      "display_name": "Marietta",
+      "parent_county": "Cobb",
+      "parent_municipality": "Marietta",
+      "zips": ["30060", "30062", "30064", "30066", "30068"],
+      "population": 61000,
+      "median_home_age": 48,
+      "homeownership_rate": 0.58,
+      "notable_landmarks": [
+        "Marietta Square and Glover Park",
+        "Earl Smith Strand Theatre",
+        "Kennesaw Mountain National Battlefield Park",
+        "Marietta Museum of History (Kennesaw House)",
+        "Life University"
+      ],
+      "vibe": "Cobb County seat with five historic districts and Civil-War-era buildings around the Square, plus East Cobb's newer subdivisions",
+      "service_relevance": {
+        "electrical": { "score": 5, "why": "Antebellum and Victorian homes near the Square with century-old wiring" },
+        "hvac": { "score": 5, "why": "Wide range of stock from 1900s farmhouses to East Cobb 1990s colonials" },
+        "plumbing": { "score": 4, "why": "Galvanized supply lines in pre-war stock plus septic-to-sewer conversions" },
+        "handyman": { "score": 4, "why": "East Cobb HOA-driven exterior repairs and historic-district trim work" }
+      },
+      "local_ctas": [
+        "Historic-district rewires for homes near Marietta Square",
+        "Septic-to-sewer line conversions in older Cobb neighborhoods",
+        "East Cobb HVAC service from Sope Creek to Mountain View",
+        "Whole-house generators for Kennesaw Mountain-adjacent properties",
+        "Strand Theatre-area commercial electrical and HVAC service"
+      ],
+      "content_hooks": [
+        "Working within Marietta's local historic district guidelines for exterior electrical",
+        "Septic-to-public-sewer transitions in older Cobb pockets between subdivisions",
+        "Generator and surge protection for power-flicker-prone East Cobb feeders"
+      ],
+      "seo": {
+        "h1": "Marietta Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Marietta Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Marietta (30060, 30062, 30064, 30066, 30068). Square historic and East Cobb specialists.",
+        "primary_keywords": [
+          "electrician marietta",
+          "marietta hvac",
+          "plumber marietta 30060",
+          "marietta handyman",
+          "east cobb electrician"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Marietta_Square",
+        "https://www.mariettaga.gov/1067/Mariettas-Rich-History",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "ZIP 30067 split between Marietta and Sandy Springs; assigned to Smyrna here. Verify per address."
+    },
+    {
+      "slug": "midtown",
+      "name": "Midtown",
+      "display_name": "Midtown",
+      "parent_county": "Fulton",
+      "parent_municipality": "Atlanta",
+      "zips": ["30308", "30309", "30363"],
+      "population": 31000,
+      "median_home_age": 35,
+      "homeownership_rate": 0.32,
+      "notable_landmarks": [
+        "Piedmont Park",
+        "Fox Theatre",
+        "Atlantic Station",
+        "Georgia Tech",
+        "High Museum of Art"
+      ],
+      "vibe": "Dense in-town district of City of Atlanta with high-rise condos, walk-up brownstones, and pockets of Victorian homes near Piedmont Park",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "High-rise unit work and historic Victorian rewires inside the same ZIP" },
+        "hvac": { "score": 4, "why": "PTAC and condo split-system work plus rooftop unit service for low-rise commercial" },
+        "plumbing": { "score": 4, "why": "Stack-shared issues in mid-rises plus old-line repairs in Ansley Park" },
+        "handyman": { "score": 5, "why": "Steady condo move-in punch lists, drywall, and fixture installs" }
+      },
+      "local_ctas": [
+        "PTAC and condo HVAC service in Midtown high-rises",
+        "Ansley Park Victorian rewiring with permit coordination",
+        "Atlantic Station condo punch-list repairs and fixture installs",
+        "Fox Theatre district commercial electrical service calls",
+        "Stack and venting repairs for Peachtree Street mid-rises"
+      ],
+      "content_hooks": [
+        "Working through condo associations for in-unit electrical and plumbing",
+        "Victorian-era restoration wiring in Ansley Park and Sherwood Forest",
+        "After-hours service for Midtown commercial tenants near the Fox and High"
+      ],
+      "seo": {
+        "h1": "Midtown Atlanta Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Midtown Atlanta Electrician, HVAC & Plumber | USE",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Midtown Atlanta (30308, 30309, 30363). Condo high-rise and Ansley Park specialists.",
+        "primary_keywords": [
+          "electrician midtown atlanta",
+          "midtown hvac",
+          "plumber midtown 30308",
+          "midtown handyman",
+          "condo electrician midtown"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Midtown_Atlanta",
+        "https://discoveratlanta.com/explore/neighborhoods/midtown/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "Midtown is a neighborhood of City of Atlanta, not a separate municipality. ZIP 30309 also touches south Buckhead; Buckhead record uses 30305/30326/30327 to keep cross-city ZIP exclusivity."
+    },
+    {
+      "slug": "roswell",
+      "name": "Roswell",
+      "display_name": "Roswell",
+      "parent_county": "Fulton",
+      "parent_municipality": "Roswell",
+      "zips": ["30075", "30076"],
+      "population": 95000,
+      "median_home_age": 32,
+      "homeownership_rate": 0.69,
+      "notable_landmarks": [
+        "Canton Street historic district",
+        "Bulloch Hall",
+        "Vickery Creek and Old Mill Park",
+        "Chattahoochee River National Recreation Area",
+        "Roswell Mill"
+      ],
+      "vibe": "Affluent north-Fulton city with antebellum National Register district, riverside trails, and large 1980s-2000s subdivisions east of GA-400",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "Antebellum estates near Canton Street need careful low-voltage and code work" },
+        "hvac": { "score": 5, "why": "Large 1990s-2000s subdivisions with original 25+ year-old systems aging out" },
+        "plumbing": { "score": 4, "why": "Riverside high-water-table homes need sump and sewer line attention" },
+        "handyman": { "score": 4, "why": "Canton Street commercial and East Roswell HOA exteriors drive demand" }
+      },
+      "local_ctas": [
+        "Antebellum-home wiring upgrades near Bulloch Hall and Barrington Hall",
+        "Sump pump and crawlspace work for Vickery Creek-area homes",
+        "AC replacements for 1990s East Roswell subdivisions",
+        "Canton Street commercial HVAC and electrical service",
+        "Whole-home filtration for Chattahoochee-side Roswell properties"
+      ],
+      "content_hooks": [
+        "Working around Roswell Historic Preservation Commission rules on Canton Street",
+        "Sump, French drain, and crawlspace strategy for Vickery Creek floodplain homes",
+        "Aging 1990s split-system replacements in Willow Springs and Country Club"
+      ],
+      "seo": {
+        "h1": "Roswell Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Roswell GA Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Roswell (30075, 30076). Historic district and East Roswell subdivision experts.",
+        "primary_keywords": [
+          "electrician roswell ga",
+          "roswell hvac",
+          "plumber roswell 30075",
+          "roswell handyman",
+          "historic district electrician roswell"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Roswell,_Georgia",
+        "https://www.visitroswellga.com/things-to-do/history-tours/historic-sites/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "ZIP 30077 is PO-box-only and excluded per agent rules."
+    },
+    {
+      "slug": "sandy-springs",
+      "name": "Sandy Springs",
+      "display_name": "Sandy Springs",
+      "parent_county": "Fulton",
+      "parent_municipality": "Sandy Springs",
+      "zips": ["30328", "30342", "30350", "30358"],
+      "population": 108000,
+      "median_home_age": 40,
+      "homeownership_rate": 0.61,
+      "notable_landmarks": [
+        "City Springs civic and arts center",
+        "Heritage Sandy Springs and the original sandy spring",
+        "Morgan Falls Overlook Park",
+        "Chattahoochee River National Recreation Area",
+        "Pill Hill medical district"
+      ],
+      "vibe": "Large north-Fulton city with 1970s-90s ranches, riverside estates, Pill Hill medical core, and Roswell Road commercial spine",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "1970s-80s ranches with original panels; tied-in commercial work near Pill Hill" },
+        "hvac": { "score": 5, "why": "Hot-roof ranches and large two-story homes with constant compressor turnover" },
+        "plumbing": { "score": 5, "why": "River-corridor pressure issues, polybutylene homes, septic conversions" },
+        "handyman": { "score": 4, "why": "Riverbend and Mount Vernon HOA exterior work plus aging-in-place mods" }
+      },
+      "local_ctas": [
+        "Roswell Road corridor commercial HVAC and refrigeration calls",
+        "Riverside ranch panel upgrades from Riverside Drive to Mount Paran",
+        "Polybutylene repipes for 1980s Sandy Springs homes",
+        "Pill Hill medical-office electrical and emergency power service",
+        "Aging-in-place grab-bar and ramp work for City Springs-area residents"
+      ],
+      "content_hooks": [
+        "Riverside high-water-table sump and sewer planning along the Chattahoochee",
+        "Polybutylene-to-PEX repipes for 1980s Sandy Springs split-levels",
+        "Backup power for Pill Hill medical practices and home dialysis setups"
+      ],
+      "seo": {
+        "h1": "Sandy Springs Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Sandy Springs Electrician, HVAC & Plumber | USE",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Sandy Springs (30328, 30342, 30350, 30358). Pill Hill and riverside specialists.",
+        "primary_keywords": [
+          "electrician sandy springs",
+          "sandy springs hvac",
+          "plumber sandy springs 30328",
+          "sandy springs handyman",
+          "polybutylene repipe sandy springs"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Sandy_Springs,_Georgia",
+        "https://www.wsbtv.com/news/local/fulton-county/sandy-springs-now-default-city-nearly-all-its-zip-codes/WURNBIKMARGWLFCOAPK6KOA2MM/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "USPS has been changing default city for Sandy Springs ZIPs (was 'Atlanta' on many records). Confirm per-address before mailers go out. ZIP 30342 is shared with North Buckhead historically; assigned to Sandy Springs based on USPS update."
+    },
+    {
+      "slug": "smyrna",
+      "name": "Smyrna",
+      "display_name": "Smyrna",
+      "parent_county": "Cobb",
+      "parent_municipality": "Smyrna",
+      "zips": ["30067", "30080", "30082"],
+      "population": 56000,
+      "median_home_age": 30,
+      "homeownership_rate": 0.55,
+      "notable_landmarks": [
+        "Smyrna Market Village and Village Green",
+        "Silver Comet Trail eastern terminus",
+        "Smyrna Community Center and Library",
+        "Taylor-Brawner Park",
+        "Tolleson Park"
+      ],
+      "vibe": "'Jonquil City' with a planned Market Village core, dense townhomes, mid-century ranches, near Truist Park across I-285",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "Townhome and condo unit work plus older Smyrna ranch panel upgrades" },
+        "hvac": { "score": 4, "why": "Townhome heat pumps and ranch system replacements dominate" },
+        "plumbing": { "score": 4, "why": "Townhome shared-wall stack repairs and ranch supply-line refits" },
+        "handyman": { "score": 5, "why": "High townhome turnover drives consistent move-in punch and paint-touch work" }
+      },
+      "local_ctas": [
+        "Townhome punch-list repairs near Smyrna Market Village",
+        "Heat-pump replacements for 'Jonquil City' ranches",
+        "Silver Comet Trail-side garage outlet and lighting installs",
+        "Shared-wall stack and venting repairs in Smyrna townhomes",
+        "Truist Park-corridor short-term-rental turnover service"
+      ],
+      "content_hooks": [
+        "Townhome HOA electrical and plumbing scoping in Vinings Estates and Aldyn",
+        "Game-day rental turnover prep for Truist Park-adjacent Smyrna properties",
+        "Heat-pump retrofits for compact mid-century ranches off Concord Road"
+      ],
+      "seo": {
+        "h1": "Smyrna Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Smyrna GA Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Smyrna (30067, 30080, 30082). Market Village townhome and ranch experts.",
+        "primary_keywords": [
+          "electrician smyrna ga",
+          "smyrna hvac",
+          "plumber smyrna 30080",
+          "smyrna handyman",
+          "townhome electrician smyrna"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Smyrna,_Georgia",
+        "https://www.silvercometga.com/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "ZIP 30126 is Mableton (excluded). ZIP 30067 split between Marietta and Smyrna; assigned to Smyrna here for service-area exclusivity."
+    },
+    {
+      "slug": "vinings",
+      "name": "Vinings",
+      "display_name": "Vinings",
+      "parent_county": "Cobb",
+      "parent_municipality": "unincorporated Cobb County",
+      "zips": ["30339"],
+      "population": 12500,
+      "median_home_age": 30,
+      "homeownership_rate": 0.52,
+      "notable_landmarks": [
+        "The Battery Atlanta and Truist Park",
+        "Vinings Jubilee shopping district",
+        "Old Vinings Inn",
+        "Cumberland Mall",
+        "Pace's Mill Chattahoochee River access"
+      ],
+      "vibe": "Unincorporated Cobb CDP across the Chattahoochee from Buckhead, luxury towers around Truist Park, plus historic hilltop village",
+      "service_relevance": {
+        "electrical": { "score": 4, "why": "Dense high-rise condo units plus historic hilltop homes needing service upgrades" },
+        "hvac": { "score": 4, "why": "Stack-style condo HVAC plus older Vinings hill homes with ducted retrofit needs" },
+        "plumbing": { "score": 4, "why": "High-rise riser issues and older village-area lines" },
+        "handyman": { "score": 5, "why": "Game-day Airbnb turnover and Cumberland-area condo punch lists" }
+      },
+      "local_ctas": [
+        "Truist Park game-day rental turnover and quick repairs",
+        "High-rise condo electrical service in Cumberland and Galleria towers",
+        "Old Vinings hilltop home rewiring and panel upgrades",
+        "Vinings Jubilee retail tenant electrical and HVAC service",
+        "Riser and stack plumbing fixes for Battery-area towers"
+      ],
+      "content_hooks": [
+        "Battery Atlanta-adjacent short-term rental rapid-turnover playbook",
+        "Working with HOA boards in Galleria-corridor condo towers",
+        "Cobb County (unincorporated) permitting paths versus City of Atlanta nearby"
+      ],
+      "seo": {
+        "h1": "Vinings Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Vinings GA Electrician, HVAC & Plumber | Service Experts",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Vinings (30339). Truist Park, Cumberland, and historic hilltop village specialists.",
+        "primary_keywords": [
+          "electrician vinings",
+          "vinings hvac",
+          "plumber vinings 30339",
+          "vinings handyman",
+          "battery atlanta electrician"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Vinings,_Georgia",
+        "https://www.city-data.com/zips/30339.html",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "Vinings is an unincorporated CDP in Cobb County; mail city for 30339 is 'Atlanta' per USPS but the area is not in City of Atlanta limits. Permits go through unincorporated Cobb."
+    },
+    {
+      "slug": "virginia-highland",
+      "name": "Virginia Highland",
+      "display_name": "Virginia-Highland",
+      "parent_county": "Fulton",
+      "parent_municipality": "Atlanta",
+      "zips": ["30306", "30307"],
+      "population": 8500,
+      "median_home_age": 100,
+      "homeownership_rate": 0.55,
+      "notable_landmarks": [
+        "N. Highland Avenue commercial strip",
+        "Atlanta BeltLine Eastside Trail",
+        "John Howell Memorial Park",
+        "Briarcliff Hotel (1925) at Ponce and N. Highland",
+        "Inman Middle School historic building"
+      ],
+      "vibe": "Walkable in-town Atlanta neighborhood of 1909-1926 Craftsman bungalows, BeltLine-adjacent, dense tree canopy, predominantly owner-occupied",
+      "service_relevance": {
+        "electrical": { "score": 5, "why": "Bungalows from 1909-1926 routinely need full rewires and service upgrades" },
+        "hvac": { "score": 5, "why": "Original bungalow footprints lack ducts; mini-split and high-velocity systems common" },
+        "plumbing": { "score": 5, "why": "Galvanized supply and clay sewer laterals at end of life under the tree canopy" },
+        "handyman": { "score": 5, "why": "Owner-restorers continually need plaster, sash window, and trim repair" }
+      },
+      "local_ctas": [
+        "1920s bungalow rewires off N. Highland and Virginia Avenue",
+        "Mini-split installs for ductless Craftsman cottages near the BeltLine",
+        "Clay sewer lateral replacement under Virginia-Highland's old oaks",
+        "Sash window and plaster repair for pre-1926 historic homes",
+        "Knob-and-tube discovery and remediation in Poncey-Highland edges"
+      ],
+      "content_hooks": [
+        "Full-home rewires that preserve original plaster and trim in 1920s Craftsmans",
+        "Adding central air to a tight bungalow without losing closet space",
+        "Coordinating BeltLine-side exterior work with Atlanta urban-design review"
+      ],
+      "seo": {
+        "h1": "Virginia-Highland Electricians, HVAC, Plumbers & Handymen",
+        "title_tag": "Virginia-Highland Electrician, HVAC & Plumber | USE",
+        "meta_description": "Licensed electrical, HVAC, plumbing, and handyman service in Virginia-Highland (30306, 30307). Bungalow rewires and BeltLine-side specialists.",
+        "primary_keywords": [
+          "electrician virginia highland",
+          "virginia highland hvac",
+          "plumber virginia highland 30306",
+          "bungalow rewire atlanta",
+          "virginia highland handyman"
+        ]
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Virginia%E2%80%93Highland",
+        "https://discoveratlanta.com/explore/neighborhoods/eastside/virginia-highland/",
+        "https://tools.usps.com/zip-code-lookup.htm?citybyzipcode"
+      ],
+      "review_notes": "Virginia-Highland is a neighborhood of City of Atlanta. ZIP 30307 is shared with Inman Park, Candler Park, and Druid Hills — confirm by address before service mailers."
+    }
+  ]
+}

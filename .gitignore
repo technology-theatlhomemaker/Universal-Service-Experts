@@ -11,3 +11,6 @@ public_html/assets/config.js
 
 # Server-only credentials — created by hand on Hostinger.
 public_html/api/secrets.php
+
+# Per-machine Claude Code settings
+.claude/settings.local.json
