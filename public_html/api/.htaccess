@@ -1,0 +1,7 @@
+# Belt-and-suspenders: PHP files are always executed by Apache, but if PHP
+# ever stops handling them this prevents secrets/db helpers from being
+# served as plain text. lead.php and retry.php remain reachable.
+
+<FilesMatch "^(secrets|secrets\.example|db|push|schema)\.(php|sql)$">
+  Require all denied
+</FilesMatch>

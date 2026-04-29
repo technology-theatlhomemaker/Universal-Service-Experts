@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const ENDPOINT = (window.USE_CONFIG && window.USE_CONFIG.endpoint) || '';
+  const DEFAULT_ENDPOINT = '/api/lead.php';
 
   const FORM_ID = 'home_hero_form';
   const PHOTO_INPUT_NAME = 'form_fields[field_0ea4ad2][]';
@@ -31,11 +31,7 @@
     e.stopImmediatePropagation();
 
     const form = e.currentTarget;
-    const endpoint = form.getAttribute('data-endpoint') || ENDPOINT;
-    if (!endpoint) {
-      showError(form, 'Form is not configured. Please call us directly.');
-      return;
-    }
+    const endpoint = form.getAttribute('data-endpoint') || DEFAULT_ENDPOINT;
 
     const validationError = validateRequired(form);
     if (validationError) {
@@ -52,28 +48,11 @@
     clearError(form);
 
     const fileInput = form.querySelector(`input[name="${PHOTO_INPUT_NAME}"]`);
-    const hasPhotos = !!(fileInput && fileInput.files && fileInput.files.length);
 
     try {
       const payload = await buildPayload(form, fileInput);
-
-      if (!hasPhotos) {
-        fetch(endpoint, {
-          method: 'POST',
-          mode: 'cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload),
-          redirect: 'follow',
-          keepalive: true
-        }).catch((err) => console.error('Background submit failed:', err));
-
-        window.location.href = '/thank-you/';
-        return;
-      }
-
       const res = await fetch(endpoint, {
         method: 'POST',
-        mode: 'cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
         redirect: 'follow'
@@ -82,12 +61,8 @@
       let body = {};
       try { body = await res.json(); } catch (_) { body = {}; }
 
-      if (body.ok && body.redirectUrl) {
-        window.location.href = body.redirectUrl;
-        return;
-      }
       if (body.ok) {
-        window.location.href = '/thank-you/';
+        window.location.href = body.redirectUrl || '/thank-you/';
         return;
       }
       throw new Error(body.error || 'Submission failed. Please try again.');
