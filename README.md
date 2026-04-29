@@ -37,6 +37,45 @@ wp-full-site-backup-04-23-26.zip   pristine WP backup from Kinsta
                                    (database dump + public/ filesystem)
 ```
 
+## Local development
+
+The site is plain HTML/CSS/JS — any static file server works. Pick one:
+
+### Python (no dependencies, ships with macOS)
+
+```bash
+./scripts/build-config.sh           # one-time, generates config.js from .env
+cd public_html
+python3 -m http.server 8000
+```
+
+Open http://localhost:8000.
+
+### Node (`npx serve`)
+
+```bash
+./scripts/build-config.sh
+npx serve public_html -l 8000
+```
+
+### PHP
+
+```bash
+./scripts/build-config.sh
+php -S localhost:8000 -t public_html
+```
+
+### Notes
+
+- Run `./scripts/build-config.sh` **before** starting the server, otherwise
+  `/assets/config.js` returns 404 and form submissions show "Form is not
+  configured."
+- After editing `.env`, re-run the build script — your browser will pick up
+  the new `config.js` on next reload (force-refresh if cached).
+- The form's `/dev` Apps Script URL only authenticates the script owner. Use
+  the same Google account in your browser as the one that deployed the
+  script, or you'll see CORS / 401 errors on submit.
+
 ## Deploying to Hostinger
 
 The site lives in `public_html/`. The contents of that folder go into
@@ -63,6 +102,41 @@ Hostinger's web root.
 2. `git init`, commit, push to GitHub/GitLab.
 3. hPanel → Websites → Git → connect the repo.
 4. Hostinger pulls and deploys on every push.
+
+## Configuring the form backend
+
+The lead-capture forms post to a Google Apps Script Web App. The endpoint URL
+lives in `.env` at the project root and is baked into
+`public_html/assets/config.js` by `scripts/build-config.sh`. **The 7 HTML pages
+are URL-agnostic** — you only ever edit one place.
+
+### First-time setup
+
+```bash
+cp .env.example .env
+# Edit .env — set APPS_SCRIPT_URL to your Apps Script /exec deployment URL.
+# (Use /dev only for local testing while logged in as the script owner.)
+./scripts/build-config.sh
+```
+
+This generates `public_html/assets/config.js`. Both `.env` and the generated
+`config.js` are gitignored.
+
+### Changing the URL later
+
+```bash
+# 1. Edit .env (one line)
+# 2. Regenerate config.js
+./scripts/build-config.sh
+# 3. Re-upload public_html/assets/config.js to your host
+```
+
+That's it — no HTML edits, no per-page changes. The 7 pages each load
+`config.js` (which sets `window.USE_CONFIG.endpoint`) before `use-form.js`
+reads it.
+
+For the Apps Script side (`Code.gs`, deploy steps, OAuth scopes, spam tests),
+see [apps_script/README.md](apps_script/README.md).
 
 ## TODO
 
